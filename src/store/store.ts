@@ -15,10 +15,10 @@ type Store = {
 };
 
 const useStore = create<Store>((set) => {
-  const session: Session | null = localStorage.getItem("session")
+  const session: Session | null = typeof window !== 'undefined' && localStorage.getItem("session")
     ? JSON.parse(localStorage.getItem("session")!)
     : null;
-  const user: SupabaseUser | null = localStorage.getItem("user")
+  const user: SupabaseUser | null = typeof window !== 'undefined' && localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user")!)
     : null;
 
@@ -30,13 +30,17 @@ const useStore = create<Store>((set) => {
     products: [],
     setProducts: (products: Product[]) => set(() => ({ products })),
     setSession: (session: Session | null) => {
-      // Guarda los datos en localStorage y actualiza el estado del componente
-      localStorage.setItem("session", JSON.stringify(session));
+      if (typeof window !== 'undefined') {
+        // Guarda los datos en localStorage y actualiza el estado del componente
+        localStorage.setItem("session", JSON.stringify(session));
+      }
       set(() => ({ session }));
     },
     setUser: (user: SupabaseUser | null) => {
-      // Guarda los datos en localStorage y actualiza el estado del componente
-      localStorage.setItem("user", JSON.stringify(user));
+      if (typeof window !== 'undefined') {
+        // Guarda los datos en localStorage y actualiza el estado del componente
+        localStorage.setItem("user", JSON.stringify(user));
+      }
       set(() => ({ user }));
     },
   };
