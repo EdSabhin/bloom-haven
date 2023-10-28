@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import Input from "../inputs/Input";
 import Button from "../buttons/Button";
 import { useRouter } from "next/navigation";
-import { User } from "@/src/models/user.model";
+import { SupabaseUser } from "@/src/models/user.model";
 import createUser from "@/src/service/createUser";
-import Image from "next/image";
 
 const Registration = () => {
   const [email, setEmail] = useState<string>("");
@@ -15,7 +14,7 @@ const Registration = () => {
 
   const router = useRouter();
 
-  async function registerUser(e: React.FormEvent): Promise<User | null> {
+  async function registerUser(e: React.FormEvent): Promise<SupabaseUser | null> {
     e.preventDefault();
     try {
       const response = await createUser(email, password);
