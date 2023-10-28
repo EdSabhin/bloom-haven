@@ -7,7 +7,7 @@ import flowerBadge from "src/assets/img/dahlia.png";
 
 type Products = {
   id: number | null;
-  image: string | null | StaticImport;
+  image: string | null | any
   title: string;
   description: string;
   rating: number | string;
