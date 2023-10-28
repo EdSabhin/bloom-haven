@@ -2,7 +2,7 @@ import React from "react";
 import "./ratingStyles.css";
 
 
-const RatingStars = ({ rating }: {rating: number | string}) => {
+const RatingStars = ({ rating }: {rating: number | string | any}) => {
   // Máxima cantidad de estrellas
   const maxStars = 5;
 
