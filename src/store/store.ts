@@ -15,13 +15,11 @@ type Store = {
 };
 
 const useStore = create<Store>((set) => {
-  // Carga los datos desde el localStorage si están disponibles
-  const session: Session | null = localStorage.getItem("session") || localStorage.getItem("sb-wxnrsymkujzanksnrsdc-auth-token")
-    ? JSON.parse(localStorage.getItem("session")!) ||
-    JSON.parse(localStorage?.getItem("sb-wxnrsymkujzanksnrsdc-auth-token")!)
+  const session: Session | null = localStorage.getItem("session")
+    ? JSON.parse(localStorage.getItem("session")!)
     : null;
-  const user: SupabaseUser | null = localStorage.getItem("user") || localStorage.getItem("sb-wxnrsymkujzanksnrsdc-auth-token")
-    ? JSON.parse(localStorage.getItem("user")!) ||  localStorage.getItem("sb-wxnrsymkujzanksnrsdc-auth-token").user
+  const user: SupabaseUser | null = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user")!)
     : null;
 
   return {
